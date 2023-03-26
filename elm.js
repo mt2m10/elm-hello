@@ -4450,11 +4450,11 @@ var $elm$core$Set$toList = function (_v0) {
 var $elm$core$Basics$EQ = {$: 'EQ'};
 var $elm$core$Basics$GT = {$: 'GT'};
 var $elm$core$Basics$LT = {$: 'LT'};
-var $author$project$Main$Model = F3(
-	function (newTodo, todos, errorMessage) {
-		return {errorMessage: errorMessage, newTodo: newTodo, todos: todos};
+var $author$project$Main$Model = F4(
+	function (newTodo, todos, completedTodos, errorMessage) {
+		return {completedTodos: completedTodos, errorMessage: errorMessage, newTodo: newTodo, todos: todos};
 	});
-var $author$project$Main$init = A3($author$project$Main$Model, '', _List_Nil, '');
+var $author$project$Main$init = A4($author$project$Main$Model, '', _List_Nil, _List_Nil, '');
 var $elm$core$Result$Err = function (a) {
 	return {$: 'Err', a: a};
 };
@@ -5185,7 +5185,236 @@ var $elm$browser$Browser$sandbox = function (impl) {
 			view: impl.view
 		});
 };
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
 var $elm$core$String$trim = _String_trim;
+var $author$project$Main$addTodo = function (model) {
+	var newTodo = {
+		_delete: false,
+		isComplete: false,
+		value: $elm$core$String$trim(model.newTodo)
+	};
+	return $elm$core$String$isEmpty(newTodo.value) ? _Utils_update(
+		model,
+		{errorMessage: 'TODOを入力してください。'}) : _Utils_update(
+		model,
+		{
+			errorMessage: '',
+			newTodo: '',
+			todos: A2(
+				$elm$core$List$append,
+				model.todos,
+				_List_fromArray(
+					[newTodo]))
+		});
+};
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm_community$list_extra$List$Extra$getAt = F2(
+	function (idx, xs) {
+		return (idx < 0) ? $elm$core$Maybe$Nothing : $elm$core$List$head(
+			A2($elm$core$List$drop, idx, xs));
+	});
+var $elm$core$Basics$always = F2(
+	function (a, _v0) {
+		return a;
+	});
+var $elm$core$List$takeReverse = F3(
+	function (n, list, kept) {
+		takeReverse:
+		while (true) {
+			if (n <= 0) {
+				return kept;
+			} else {
+				if (!list.b) {
+					return kept;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs,
+						$temp$kept = A2($elm$core$List$cons, x, kept);
+					n = $temp$n;
+					list = $temp$list;
+					kept = $temp$kept;
+					continue takeReverse;
+				}
+			}
+		}
+	});
+var $elm$core$List$takeTailRec = F2(
+	function (n, list) {
+		return $elm$core$List$reverse(
+			A3($elm$core$List$takeReverse, n, list, _List_Nil));
+	});
+var $elm$core$List$takeFast = F3(
+	function (ctr, n, list) {
+		if (n <= 0) {
+			return _List_Nil;
+		} else {
+			var _v0 = _Utils_Tuple2(n, list);
+			_v0$1:
+			while (true) {
+				_v0$5:
+				while (true) {
+					if (!_v0.b.b) {
+						return list;
+					} else {
+						if (_v0.b.b.b) {
+							switch (_v0.a) {
+								case 1:
+									break _v0$1;
+								case 2:
+									var _v2 = _v0.b;
+									var x = _v2.a;
+									var _v3 = _v2.b;
+									var y = _v3.a;
+									return _List_fromArray(
+										[x, y]);
+								case 3:
+									if (_v0.b.b.b.b) {
+										var _v4 = _v0.b;
+										var x = _v4.a;
+										var _v5 = _v4.b;
+										var y = _v5.a;
+										var _v6 = _v5.b;
+										var z = _v6.a;
+										return _List_fromArray(
+											[x, y, z]);
+									} else {
+										break _v0$5;
+									}
+								default:
+									if (_v0.b.b.b.b && _v0.b.b.b.b.b) {
+										var _v7 = _v0.b;
+										var x = _v7.a;
+										var _v8 = _v7.b;
+										var y = _v8.a;
+										var _v9 = _v8.b;
+										var z = _v9.a;
+										var _v10 = _v9.b;
+										var w = _v10.a;
+										var tl = _v10.b;
+										return (ctr > 1000) ? A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A2($elm$core$List$takeTailRec, n - 4, tl))))) : A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A3($elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
+									} else {
+										break _v0$5;
+									}
+							}
+						} else {
+							if (_v0.a === 1) {
+								break _v0$1;
+							} else {
+								break _v0$5;
+							}
+						}
+					}
+				}
+				return list;
+			}
+			var _v1 = _v0.b;
+			var x = _v1.a;
+			return _List_fromArray(
+				[x]);
+		}
+	});
+var $elm$core$List$take = F2(
+	function (n, list) {
+		return A3($elm$core$List$takeFast, 0, n, list);
+	});
+var $elm_community$list_extra$List$Extra$updateAt = F3(
+	function (index, fn, list) {
+		if (index < 0) {
+			return list;
+		} else {
+			var tail = A2($elm$core$List$drop, index, list);
+			if (tail.b) {
+				var x = tail.a;
+				var xs = tail.b;
+				return _Utils_ap(
+					A2($elm$core$List$take, index, list),
+					A2(
+						$elm$core$List$cons,
+						fn(x),
+						xs));
+			} else {
+				return list;
+			}
+		}
+	});
+var $elm_community$list_extra$List$Extra$setAt = F2(
+	function (index, value) {
+		return A2(
+			$elm_community$list_extra$List$Extra$updateAt,
+			index,
+			$elm$core$Basics$always(value));
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
@@ -5195,20 +5424,47 @@ var $author$project$Main$update = F2(
 					model,
 					{newTodo: text});
 			case 'AddTodo':
-				var newTodo = $elm$core$String$trim(model.newTodo);
-				return $elm$core$String$isEmpty(newTodo) ? _Utils_update(
-					model,
-					{errorMessage: 'TODOを入力してください。'}) : _Utils_update(
-					model,
-					{
-						errorMessage: '',
-						newTodo: '',
-						todos: A2($elm$core$List$cons, newTodo, model.todos)
-					});
-			default:
+				return $author$project$Main$addTodo(model);
+			case 'ClearErrorMessage':
 				return _Utils_update(
 					model,
 					{errorMessage: ''});
+			case 'CompleteTodo':
+				var index = msg.a;
+				var isComplete = msg.b;
+				var todo = A2(
+					$elm$core$Maybe$withDefault,
+					{_delete: false, isComplete: false, value: ''},
+					A2($elm_community$list_extra$List$Extra$getAt, index, model.todos));
+				var updatedTodo = _Utils_update(
+					todo,
+					{isComplete: isComplete});
+				var updatedTodos = A3($elm_community$list_extra$List$Extra$setAt, index, updatedTodo, model.todos);
+				return _Utils_update(
+					model,
+					{todos: updatedTodos});
+			case 'DeleteTodo':
+				var index = msg.a;
+				var todo = A2(
+					$elm$core$Maybe$withDefault,
+					{_delete: false, isComplete: false, value: ''},
+					A2($elm_community$list_extra$List$Extra$getAt, index, model.todos));
+				var updatedTodo = _Utils_update(
+					todo,
+					{_delete: true});
+				var updatedTodos = A3($elm_community$list_extra$List$Extra$setAt, index, updatedTodo, model.todos);
+				return _Utils_update(
+					model,
+					{todos: updatedTodos});
+			default:
+				var code = msg.a;
+				var shiftKey = msg.b;
+				var _v1 = _Utils_Tuple2(code, shiftKey);
+				if ((_v1.a === 13) && _v1.b) {
+					return $author$project$Main$addTodo(model);
+				} else {
+					return model;
+				}
 		}
 	});
 var $elm$json$Json$Encode$string = _Json_wrap;
@@ -5225,6 +5481,10 @@ var $author$project$Main$AddTodo = {$: 'AddTodo'};
 var $author$project$Main$EnteredText = function (a) {
 	return {$: 'EnteredText', a: a};
 };
+var $author$project$Main$OnKeyDownWithCtrl = F2(
+	function (a, b) {
+		return {$: 'OnKeyDownWithCtrl', a: a, b: b};
+	});
 var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
@@ -5277,6 +5537,14 @@ var $elm$html$Html$Events$onInput = function (tagger) {
 			$elm$html$Html$Events$alwaysStop,
 			A2($elm$json$Json$Decode$map, tagger, $elm$html$Html$Events$targetValue)));
 };
+var $elm$json$Json$Decode$bool = _Json_decodeBool;
+var $elm$json$Json$Decode$int = _Json_decodeInt;
+var $elm$html$Html$Events$keyCode = A2($elm$json$Json$Decode$field, 'keyCode', $elm$json$Json$Decode$int);
+var $author$project$Main$onKeyDownWithCtrl = function (msg) {
+	var shiftKey = A2($elm$json$Json$Decode$field, 'ctrlKey', $elm$json$Json$Decode$bool);
+	var decoder = A3($elm$json$Json$Decode$map2, msg, $elm$html$Html$Events$keyCode, shiftKey);
+	return A2($elm$html$Html$Events$on, 'keydown', decoder);
+};
 var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
@@ -5286,7 +5554,7 @@ var $author$project$Main$viewInput = function (model) {
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('row mb-3')
+				$elm$html$Html$Attributes$class('row mb-5')
 			]),
 		_List_fromArray(
 			[
@@ -5294,7 +5562,7 @@ var $author$project$Main$viewInput = function (model) {
 				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						$elm$html$Html$Attributes$class('col-sm-5')
+						$elm$html$Html$Attributes$class('col-sm-5 d-flex')
 					]),
 				_List_fromArray(
 					[
@@ -5302,22 +5570,14 @@ var $author$project$Main$viewInput = function (model) {
 						$elm$html$Html$input,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$class('form-control'),
+								$elm$html$Html$Attributes$class('form-control me-2'),
 								$elm$html$Html$Events$onInput($author$project$Main$EnteredText),
 								$elm$html$Html$Attributes$placeholder('input todo'),
 								$elm$html$Html$Attributes$value(model.newTodo),
-								$elm$core$String$isEmpty(model.errorMessage) ? $elm$html$Html$Attributes$class('') : $elm$html$Html$Attributes$class('is-invalid')
+								$elm$core$String$isEmpty(model.errorMessage) ? $elm$html$Html$Attributes$class('') : $elm$html$Html$Attributes$class('is-invalid'),
+								$author$project$Main$onKeyDownWithCtrl($author$project$Main$OnKeyDownWithCtrl)
 							]),
-						_List_Nil)
-					])),
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[
-						$elm$html$Html$Attributes$class('col-sm-5')
-					]),
-				_List_fromArray(
-					[
+						_List_Nil),
 						A2(
 						$elm$html$Html$button,
 						_List_fromArray(
@@ -5342,22 +5602,105 @@ var $author$project$Main$viewInput = function (model) {
 					]))
 			]));
 };
-var $elm$html$Html$li = _VirtualDom_node('li');
-var $author$project$Main$todoListItem = function (todo) {
-	return A2(
-		$elm$html$Html$li,
-		_List_Nil,
-		_List_fromArray(
-			[
-				$elm$html$Html$text(todo)
-			]));
+var $author$project$Main$CompleteTodo = F2(
+	function (a, b) {
+		return {$: 'CompleteTodo', a: a, b: b};
+	});
+var $author$project$Main$DeleteTodo = function (a) {
+	return {$: 'DeleteTodo', a: a};
 };
+var $elm$json$Json$Encode$bool = _Json_wrap;
+var $elm$html$Html$Attributes$boolProperty = F2(
+	function (key, bool) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$bool(bool));
+	});
+var $elm$html$Html$Attributes$checked = $elm$html$Html$Attributes$boolProperty('checked');
+var $elm$html$Html$Attributes$for = $elm$html$Html$Attributes$stringProperty('htmlFor');
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
+var $elm$html$Html$label = _VirtualDom_node('label');
+var $elm$html$Html$li = _VirtualDom_node('li');
+var $elm$core$Basics$not = _Basics_not;
+var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
+var $author$project$Main$todoListItem = F2(
+	function (index, todo) {
+		return A2(
+			$elm$html$Html$li,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('col-sm-8 d-flex justify-content-between align-items-center px-4 py-2 border rounded-1 mb-2'),
+					todo.isComplete ? $elm$html$Html$Attributes$class('bg-success bg-opacity-10') : $elm$html$Html$Attributes$class(''),
+					todo._delete ? $elm$html$Html$Attributes$class('d-none') : $elm$html$Html$Attributes$class('')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$div,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$input,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$type_('checkbox'),
+											$elm$html$Html$Attributes$id(
+											'checkComplete' + $elm$core$String$fromInt(index)),
+											$elm$html$Html$Attributes$class('me-2'),
+											$elm$html$Html$Attributes$checked(todo.isComplete),
+											$elm$html$Html$Events$onClick(
+											A2($author$project$Main$CompleteTodo, index, !todo.isComplete))
+										]),
+									_List_Nil),
+									A2(
+									$elm$html$Html$label,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$for(
+											'checkComplete' + $elm$core$String$fromInt(index))
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(todo.value)
+										]))
+								]))
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$button,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('btn btn-outline-danger btn-sm'),
+									$elm$html$Html$Events$onClick(
+									$author$project$Main$DeleteTodo(index))
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text('del')
+								]))
+						]))
+				]));
+	});
 var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $author$project$Main$todoList = function (todos) {
 	return A2(
 		$elm$html$Html$ul,
-		_List_Nil,
-		A2($elm$core$List$map, $author$project$Main$todoListItem, todos));
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('ps-0')
+			]),
+		A2($elm$core$List$indexedMap, $author$project$Main$todoListItem, todos));
 };
 var $author$project$Main$viewOutput = function (model) {
 	return A2(
