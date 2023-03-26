@@ -15,11 +15,11 @@ main =
 onKeyDownWithCtrl : (Int -> Bool -> msg) -> Html.Attribute msg
 onKeyDownWithCtrl msg =
     let
-        shiftKey =
+        ctrlKey =
             Json.field "ctrlKey" Json.bool
 
         decoder =
-            Json.map2 msg keyCode shiftKey
+            Json.map2 msg keyCode ctrlKey
     in
     on "keydown" decoder
 
@@ -65,6 +65,7 @@ type Msg
 
 addTodo : Model -> Model
 addTodo model =
+    -- todo追加関数
     let
         newTodo =
             { value = String.trim model.newTodo, isComplete = False, delete = False }
@@ -121,9 +122,10 @@ update msg model =
             in
             { model | todos = updatedTodos }
 
-        OnKeyDownWithCtrl code shiftKey ->
-            case ( code, shiftKey ) of
+        OnKeyDownWithCtrl code ctrlKey ->
+            case ( code, ctrlKey ) of
                 ( 13, True ) ->
+                    -- enter + ctrl
                     addTodo model
 
                 ( _, _ ) ->

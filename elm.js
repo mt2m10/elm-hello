@@ -5458,8 +5458,8 @@ var $author$project$Main$update = F2(
 					{todos: updatedTodos});
 			default:
 				var code = msg.a;
-				var shiftKey = msg.b;
-				var _v1 = _Utils_Tuple2(code, shiftKey);
+				var ctrlKey = msg.b;
+				var _v1 = _Utils_Tuple2(code, ctrlKey);
 				if ((_v1.a === 13) && _v1.b) {
 					return $author$project$Main$addTodo(model);
 				} else {
@@ -5541,8 +5541,8 @@ var $elm$json$Json$Decode$bool = _Json_decodeBool;
 var $elm$json$Json$Decode$int = _Json_decodeInt;
 var $elm$html$Html$Events$keyCode = A2($elm$json$Json$Decode$field, 'keyCode', $elm$json$Json$Decode$int);
 var $author$project$Main$onKeyDownWithCtrl = function (msg) {
-	var shiftKey = A2($elm$json$Json$Decode$field, 'ctrlKey', $elm$json$Json$Decode$bool);
-	var decoder = A3($elm$json$Json$Decode$map2, msg, $elm$html$Html$Events$keyCode, shiftKey);
+	var ctrlKey = A2($elm$json$Json$Decode$field, 'ctrlKey', $elm$json$Json$Decode$bool);
+	var decoder = A3($elm$json$Json$Decode$map2, msg, $elm$html$Html$Events$keyCode, ctrlKey);
 	return A2($elm$html$Html$Events$on, 'keydown', decoder);
 };
 var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
