@@ -5497,6 +5497,249 @@ var $author$project$Main$viewFooter = A2(
 					$elm$html$Html$text('© 2023 Masashi Tanimoto. All rights reserved.')
 				]))
 		]));
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
+		return A2(
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
+	});
+var $elm$html$Html$Attributes$attribute = $elm$virtual_dom$VirtualDom$attribute;
+var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$html$Html$header = _VirtualDom_node('header');
+var $elm$html$Html$h5 = _VirtualDom_node('h5');
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
+var $elm$html$Html$li = _VirtualDom_node('li');
+var $elm$core$Basics$negate = function (n) {
+	return -n;
+};
+var $elm$html$Html$Attributes$tabindex = function (n) {
+	return A2(
+		_VirtualDom_attribute,
+		'tabIndex',
+		$elm$core$String$fromInt(n));
+};
+var $elm$html$Html$ul = _VirtualDom_node('ul');
+var $author$project$Main$viewHowToUseModal = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$id('explainModal'),
+			$elm$html$Html$Attributes$class('modal'),
+			$elm$html$Html$Attributes$tabindex(-1)
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('modal-dialog modal-lg')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('modal-content')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('modal-header')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('modal-title')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('使い方')
+										]))
+								])),
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('modal-body')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$ul,
+									_List_Nil,
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('テキストボックスにTODOを入力して、「Add」ボタンをクリックすると追加されます。')
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('「Add」ボタンの代わりに [Ctrl + Enter] でも追加可能です。')
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('チェックボックスをONにすると完了ステータスとみなします。')
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('「del」ボタンでTodoを削除します。')
+												])),
+											A2(
+											$elm$html$Html$li,
+											_List_Nil,
+											_List_fromArray(
+												[
+													$elm$html$Html$text('TODOは保存されません。リロードすると入力したTODOはすべて消えます。')
+												]))
+										]))
+								]))
+						]))
+				]))
+		]));
+var $elm$html$Html$br = _VirtualDom_node('br');
+var $author$project$Main$viewImpressionsModal = A2(
+	$elm$html$Html$div,
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$id('impressionsModal'),
+			$elm$html$Html$Attributes$class('modal'),
+			$elm$html$Html$Attributes$tabindex(-1)
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('modal-dialog modal-lg')
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('modal-content')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('modal-header')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('modal-title')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('感想')
+										]))
+								])),
+							A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('modal-body')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$div,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$elm$html$Html$text('Elmは、他の言語に比べて学びが難しい部分があり、ChatGPTに結構頼りましたが、関数型プログラミングの考え方やアプローチを学ぶことができました。ただ、次に学ぶならばScala、Haskell、Elixirのような関数型プログラミング言語を選ぶ方が良いかもしれません。'),
+											A2($elm$html$Html$br, _List_Nil, _List_Nil),
+											A2($elm$html$Html$br, _List_Nil, _List_Nil),
+											$elm$html$Html$text('また、最新のElmのバージョンが2019年であることを知り、あまり活発ではないと感じました。そのため、実務で採用することは難しいかもしれません。'),
+											A2($elm$html$Html$br, _List_Nil, _List_Nil),
+											A2($elm$html$Html$br, _List_Nil, _List_Nil),
+											$elm$html$Html$text('ただ、Elmでの書き方を学ぶことで関数型プログラミングについての理解を深めることができました。Elmは他の関数型プログラミング言語とは異なる特徴を持っていますが、そのアプローチを学ぶことでプログラムの書き方に新しい視点を与えてくれました。言語の選択は失敗とは言えないかもしれません。')
+										]))
+								]))
+						]))
+				]))
+		]));
+var $author$project$Main$viewHeader = A2(
+	$elm$html$Html$header,
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$class('mb-3 d-flex justify-content-between align-items-end col-sm-8')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$div,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('fs-2')
+				]),
+			_List_fromArray(
+				[
+					$elm$html$Html$text('Todos')
+				])),
+			A2(
+			$elm$html$Html$div,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$button,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('btn btn-link'),
+							A2($elm$html$Html$Attributes$attribute, 'data-bs-toggle', 'modal'),
+							A2($elm$html$Html$Attributes$attribute, 'data-bs-target', '#explainModal')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text('使い方')
+						])),
+					$author$project$Main$viewHowToUseModal,
+					A2(
+					$elm$html$Html$button,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('btn btn-link'),
+							A2($elm$html$Html$Attributes$attribute, 'data-bs-toggle', 'modal'),
+							A2($elm$html$Html$Attributes$attribute, 'data-bs-target', '#impressionsModal')
+						]),
+					_List_fromArray(
+						[
+							$elm$html$Html$text('感想')
+						])),
+					$author$project$Main$viewImpressionsModal
+				]))
+		]));
 var $author$project$Main$AddTodo = {$: 'AddTodo'};
 var $author$project$Main$EnteredText = function (a) {
 	return {$: 'EnteredText', a: a};
@@ -5505,7 +5748,6 @@ var $author$project$Main$OnKeyDownWithCtrl = F2(
 	function (a, b) {
 		return {$: 'OnKeyDownWithCtrl', a: a, b: b};
 	});
-var $elm$html$Html$button = _VirtualDom_node('button');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
@@ -5637,9 +5879,7 @@ var $elm$html$Html$Attributes$boolProperty = F2(
 	});
 var $elm$html$Html$Attributes$checked = $elm$html$Html$Attributes$boolProperty('checked');
 var $elm$html$Html$Attributes$for = $elm$html$Html$Attributes$stringProperty('htmlFor');
-var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$label = _VirtualDom_node('label');
-var $elm$html$Html$li = _VirtualDom_node('li');
 var $elm$core$Basics$not = _Basics_not;
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
 var $author$project$Main$todoListItem = F2(
@@ -5710,7 +5950,6 @@ var $author$project$Main$todoListItem = F2(
 						]))
 				]));
 	});
-var $elm$html$Html$ul = _VirtualDom_node('ul');
 var $author$project$Main$todoList = function (todos) {
 	return A2(
 		$elm$html$Html$ul,
@@ -5729,16 +5968,6 @@ var $author$project$Main$viewOutput = function (model) {
 				$author$project$Main$todoList(model.todos)
 			]));
 };
-var $author$project$Main$viewTitle = A2(
-	$elm$html$Html$div,
-	_List_fromArray(
-		[
-			$elm$html$Html$Attributes$class('fs-2 mb-3')
-		]),
-	_List_fromArray(
-		[
-			$elm$html$Html$text('Todos')
-		]));
 var $author$project$Main$view = function (model) {
 	return A2(
 		$elm$html$Html$div,
@@ -5748,7 +5977,7 @@ var $author$project$Main$view = function (model) {
 			]),
 		_List_fromArray(
 			[
-				$author$project$Main$viewTitle,
+				$author$project$Main$viewHeader,
 				$author$project$Main$viewInput(model),
 				$author$project$Main$viewOutput(model),
 				$author$project$Main$viewFooter

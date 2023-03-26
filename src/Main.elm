@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Browser
-import Html exposing (Html, button, div, footer, input, label, li, p, text, ul)
+import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (keyCode, on, onClick, onInput)
 import Json.Decode as Json
@@ -140,17 +140,26 @@ view : Model -> Html Msg
 view model =
     -- 親view
     div [ class "container" ]
-        [ viewTitle
+        [ viewHeader
         , viewInput model
         , viewOutput model
         , viewFooter
         ]
 
 
-viewTitle : Html Msg
-viewTitle =
-    -- タイトル
-    div [ class "fs-2 mb-3" ] [ text "Todos" ]
+viewHeader : Html Msg
+viewHeader =
+    header [ class "mb-3 d-flex justify-content-between align-items-end col-sm-8" ]
+        [ div [ class "fs-2" ] [ text "Todos" ]
+        , div []
+            [ button [ class "btn btn-link", attribute "data-bs-toggle" "modal", attribute "data-bs-target" "#explainModal" ] [ text "使い方" ]
+            , viewHowToUseModal
+            , button
+                [ class "btn btn-link", attribute "data-bs-toggle" "modal", attribute "data-bs-target" "#impressionsModal" ]
+                [ text "感想" ]
+            , viewImpressionsModal
+            ]
+        ]
 
 
 viewInput : Model -> Html Msg
@@ -232,3 +241,49 @@ viewFooter : Html Msg
 viewFooter =
     -- フッター
     footer [ class "position-absolute bottom-0 start-50 translate-middle-x" ] [ p [] [ text "© 2023 Masashi Tanimoto. All rights reserved." ] ]
+
+
+viewHowToUseModal : Html Msg
+viewHowToUseModal =
+    div [ id "explainModal", class "modal", tabindex -1 ]
+        [ div [ class "modal-dialog modal-lg" ]
+            [ div [ class "modal-content" ]
+                [ div [ class "modal-header" ]
+                    [ h5 [ class "modal-title" ] [ text "使い方" ]
+                    ]
+                , div [ class "modal-body" ]
+                    [ ul []
+                        [ li [] [ text "テキストボックスにTODOを入力して、「Add」ボタンをクリックすると追加されます。" ]
+                        , li [] [ text "「Add」ボタンの代わりに [Ctrl + Enter] でも追加可能です。" ]
+                        , li [] [ text "チェックボックスをONにすると完了ステータスとみなします。" ]
+                        , li [] [ text "「del」ボタンでTodoを削除します。" ]
+                        , li [] [ text "TODOは保存されません。リロードすると入力したTODOはすべて消えます。" ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+
+
+viewImpressionsModal : Html Msg
+viewImpressionsModal =
+    div [ id "impressionsModal", class "modal", tabindex -1 ]
+        [ div [ class "modal-dialog modal-lg" ]
+            [ div [ class "modal-content" ]
+                [ div [ class "modal-header" ]
+                    [ h5 [ class "modal-title" ] [ text "感想" ]
+                    ]
+                , div [ class "modal-body" ]
+                    [ div []
+                        [ text "Elmは、他の言語に比べて学びが難しい部分があり、ChatGPTに結構頼りましたが、関数型プログラミングの考え方やアプローチを学ぶことができました。ただ、次に学ぶならばScala、Haskell、Elixirのような関数型プログラミング言語を選ぶ方が良いかもしれません。"
+                        , br [] []
+                        , br [] []
+                        , text "また、最新のElmのバージョンが2019年であることを知り、あまり活発ではないと感じました。そのため、実務で採用することは難しいかもしれません。"
+                        , br [] []
+                        , br [] []
+                        , text "ただ、Elmでの書き方を学ぶことで関数型プログラミングについての理解を深めることができました。Elmは他の関数型プログラミング言語とは異なる特徴を持っていますが、そのアプローチを学ぶことでプログラムの書き方に新しい視点を与えてくれました。言語の選択は失敗とは言えないかもしれません。"
+                        ]
+                    ]
+                ]
+            ]
+        ]
