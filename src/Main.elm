@@ -1,7 +1,7 @@
 module Main exposing (..)
 
 import Browser
-import Html exposing (Html, button, div, input, label, li, text, ul)
+import Html exposing (Html, button, div, footer, input, label, li, p, text, ul)
 import Html.Attributes exposing (..)
 import Html.Events exposing (keyCode, on, onClick, onInput)
 import Json.Decode as Json
@@ -143,6 +143,7 @@ view model =
         [ viewTitle
         , viewInput model
         , viewOutput model
+        , viewFooter
         ]
 
 
@@ -225,3 +226,9 @@ todoListItem index todo =
             [ button [ class "btn btn-outline-danger btn-sm", onClick (DeleteTodo index) ] [ text "del" ]
             ]
         ]
+
+
+viewFooter : Html Msg
+viewFooter =
+    -- フッター
+    footer [ class "position-absolute bottom-0 start-50 translate-middle-x" ] [ p [] [ text "© 2023 Masashi Tanimoto. All rights reserved." ] ]

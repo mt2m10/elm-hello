@@ -5477,6 +5477,26 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 	});
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$html$Html$footer = _VirtualDom_node('footer');
+var $elm$html$Html$p = _VirtualDom_node('p');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $author$project$Main$viewFooter = A2(
+	$elm$html$Html$footer,
+	_List_fromArray(
+		[
+			$elm$html$Html$Attributes$class('position-absolute bottom-0 start-50 translate-middle-x')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$html$Html$p,
+			_List_Nil,
+			_List_fromArray(
+				[
+					$elm$html$Html$text('© 2023 Masashi Tanimoto. All rights reserved.')
+				]))
+		]));
 var $author$project$Main$AddTodo = {$: 'AddTodo'};
 var $author$project$Main$EnteredText = function (a) {
 	return {$: 'EnteredText', a: a};
@@ -5546,8 +5566,6 @@ var $author$project$Main$onKeyDownWithCtrl = function (msg) {
 	return A2($elm$html$Html$Events$on, 'keydown', decoder);
 };
 var $elm$html$Html$Attributes$placeholder = $elm$html$Html$Attributes$stringProperty('placeholder');
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Main$viewInput = function (model) {
 	return A2(
@@ -5732,7 +5750,8 @@ var $author$project$Main$view = function (model) {
 			[
 				$author$project$Main$viewTitle,
 				$author$project$Main$viewInput(model),
-				$author$project$Main$viewOutput(model)
+				$author$project$Main$viewOutput(model),
+				$author$project$Main$viewFooter
 			]));
 };
 var $author$project$Main$main = $elm$browser$Browser$sandbox(
